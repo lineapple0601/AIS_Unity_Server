@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/* ログアウトルーティング */
+Route::prefix('rank')->group(function () {
+    // データ照会
+    Route::get('/', [
+        'as' => 'rank.get',
+        'uses' => 'APIController@getDatas'
+    ]);
+    // データ登録
+    Route::post('/', [
+        'as' => 'rank.create',
+        'uses' => 'APIController@putData'
+    ]);
+});
