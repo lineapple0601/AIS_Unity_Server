@@ -32,7 +32,7 @@ class APIController extends BaseController
             $query->save();
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            $result = false;
+            $result = $e->getMessage();
         }
         return $result;
     }
