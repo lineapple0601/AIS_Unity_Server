@@ -22,8 +22,8 @@ class APIController extends BaseController
     }
 
     public function putData(Request $request) {
-        $result = "200";
-	Log::info(var_export($request->all(), true));
+        $result = "-1";
+        Log::info(var_export($request->all(), true));
         try {
             $name = $request->input('name');
             $score = $request->input('score');
@@ -32,9 +32,17 @@ class APIController extends BaseController
             $query->name = $name;
             $query->score = $score;
             $query->save();
+
+            $id = $query->id;
+
+            $rankLists = Rank::orderBy("score", "desc")->get();
+            foreach($rankLists as $idx => $rank) {
+                if ($rank->id == $id) {
+                    $result = $idx;
+                }
+            }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            $result = $e->getMessage();
         }
         return $result;
     }
