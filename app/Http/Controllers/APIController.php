@@ -12,7 +12,7 @@ class APIController extends BaseController
     public function getDatas() {
         $result = array();
         try {
-            $dataCollection = Rank::all();
+            $dataCollection = Rank::orderBy('score', 'desc')->get();
             $result = $dataCollection->toArray();
         } catch (\Exception $e) {
             Log::error($e->getMessage());
