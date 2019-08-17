@@ -38,7 +38,7 @@ class APIController extends BaseController
             $rankLists = Rank::orderBy("score", "desc")->get();
             foreach($rankLists as $idx => $rank) {
                 if ($rank->id == $id) {
-                    $result = $idx;
+                    $result = $idx+1;
                 }
             }
         } catch (\Exception $e) {
