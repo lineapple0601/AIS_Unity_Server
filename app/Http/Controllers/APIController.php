@@ -35,7 +35,7 @@ class APIController extends BaseController
 
             $id = $query->id;
 
-            $rankLists = Rank::orderBy("score", "desc")->get();
+            $rankLists = Rank::orderBy("score", "desc")->orderBy('created_at', 'asc')->get();
             foreach($rankLists as $idx => $rank) {
                 if ($rank->id == $id) {
                     $result = $idx+1;
