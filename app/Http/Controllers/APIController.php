@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 use App\Models\Rank;
 use Log;
 
@@ -20,11 +21,12 @@ class APIController extends BaseController
         return json_encode($result);
     }
 
-    public function putData(\Request $request) {
-        $result = true;
+    public function putData(Request $request) {
+        $result = "200";
+	Log::info(var_export($request->all(), true));
         try {
-            $name = $request->name;
-            $score = $request->score;
+            $name = $request->input('name');
+            $score = $request->input('score');
 
             $query = new Rank();
             $query->name = $name;

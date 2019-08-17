@@ -23,7 +23,7 @@ Route::prefix('rank')->group(function () {
         'uses' => 'APIController@getDatas'
     ]);
     // データ登録
-    Route::post('/', [
+    Route::any('register', [
         'as' => 'rank.create',
         'uses' => 'APIController@putData'
     ]);
